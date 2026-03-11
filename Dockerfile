@@ -14,7 +14,7 @@ RUN apt-get update \
 
 RUN npm install -g openclaw@2026.3.8
 
-RUN curl -L https://github.com/steipete/gog/releases/latest/download/gog_Linux_x86_64.tar.gz \
+RUN curl -L https://github.com/steipete/gogcli/releases/latest/download/gog-linux-amd64 \
     | tar -xz -C /usr/local/bin && chmod +x /usr/local/bin/gog
     
 WORKDIR /app
