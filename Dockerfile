@@ -14,8 +14,11 @@ RUN apt-get update \
 
 RUN npm install -g openclaw@2026.3.8
 
-RUN curl -L https://github.com/steipete/gogcli/releases/latest/download/gog-linux-amd64 \
-    -o /usr/local/bin/gog && chmod +x /usr/local/bin/gog
+RUN GOGCLI_VERSION=$(curl -s https://api.github.com/repos/steipete/gogcli/releases/latest \
+    | grep '"tag_name"' | cut -d'"' -f4 | sed 's/v//') \
+    && curl -L "https://github.com/steipete/gogcli/releases/download/v${GOGCLI_VERSION}/gogcli_${GOGCLI_VERSION}_linux_amd64.tar.gz" \
+    | tar -xz -C /tmp \
+    && install -m 0755 /tmp/gog /usr/local/bin/gog
     
 WORKDIR /app
 
