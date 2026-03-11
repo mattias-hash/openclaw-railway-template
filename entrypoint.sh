@@ -11,4 +11,8 @@ fi
 rm -rf /home/linuxbrew/.linuxbrew
 ln -sfn /data/.linuxbrew /home/linuxbrew/.linuxbrew
 
+# Persist gogcli config on Railway volume
+mkdir -p /data/gogcli /home/openclaw/.config
+ln -sfn /data/gogcli /home/openclaw/.config/gogcli
+
 exec gosu openclaw node src/server.js
